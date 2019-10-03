@@ -870,7 +870,7 @@ self.C3_JsPropNameTable = [
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
 			const n1 = p._GetNode(1);
-			return () => f0((Math.abs(((-758) + n1.ExpObject())) / 1000));
+			return () => f0((Math.abs(((-782) + n1.ExpObject())) / 1000));
 		},
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
