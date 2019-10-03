@@ -627,6 +627,10 @@ self.C3_GetObjectRefTable = function () {
 		C3.Plugins.Sprite.Exps.Y,
 		C3.Plugins.System.Cnds.Compare,
 		C3.Plugins.Text.Acts.SetText,
+		C3.Plugins.System.Acts.SubVar,
+		C3.Plugins.System.Exps.dt,
+		C3.Plugins.System.Exps.zeropad,
+		C3.Plugins.Sprite.Acts.Destroy,
 		C3.Plugins.System.Cnds.IsGroupActive,
 		C3.Plugins.System.Cnds.Else,
 		C3.Behaviors.Platform.Cnds.OnLand,
@@ -636,7 +640,6 @@ self.C3_GetObjectRefTable = function () {
 		C3.Behaviors.Platform.Acts.SimulateControl,
 		C3.Behaviors.Fade.Acts.StartFade,
 		C3.Behaviors.Platform.Acts.SetJumpStrength,
-		C3.Plugins.Sprite.Acts.Destroy,
 		C3.Behaviors.Platform.Cnds.OnJump,
 		C3.Plugins.Sprite.Cnds.IsAnimPlaying,
 		C3.Plugins.Keyboard.Cnds.IsKeyDown,
@@ -654,7 +657,6 @@ self.C3_GetObjectRefTable = function () {
 		C3.Plugins.System.Acts.GoToLayout,
 		C3.Plugins.System.Cnds.OnLayoutStart,
 		C3.Plugins.Sprite.Acts.SetPos,
-		C3.Plugins.System.Exps.zeropad,
 		C3.Plugins.TextBox.Acts.SetVisible,
 		C3.Plugins.Touch.Cnds.IsTouchingObject,
 		C3.Plugins.Sprite.Acts.SetAnimFrame,
@@ -719,6 +721,7 @@ self.C3_JsPropNameTable = [
 	{BarText: 0},
 	{ScoreLoadingText: 0},
 	{Top10: 0},
+	{TimeCountdown: 0},
 	{input: 0},
 	{ScrollUp: 0},
 	{NextPlatform: 0},
@@ -740,6 +743,9 @@ self.C3_JsPropNameTable = [
 	{NonStepableRepeatCount: 0},
 	{web_app_url: 0},
 	{s: 0},
+	{GameTime: 0},
+	{GameTimeSeconds: 0},
+	{GameTimeMinutes: 0},
 	{Stepable: 0},
 	{StepableNormal: 0},
 	{StepableSpring: 0},
@@ -867,8 +873,30 @@ self.C3_JsPropNameTable = [
 			return () => f0((Math.abs(((-758) + n1.ExpObject())) / 1000));
 		},
 		p => {
+			const f0 = p._GetNode(0).GetBoundMethod();
+			const v1 = p._GetNode(1).GetVar();
+			return () => f0((v1.GetValue() % 60));
+		},
+		p => {
+			const f0 = p._GetNode(0).GetBoundMethod();
+			const v1 = p._GetNode(1).GetVar();
+			return () => f0(((v1.GetValue() / 60) % 60));
+		},
+		() => 0,
+		p => {
 			const v0 = p._GetNode(0).GetVar();
 			return () => and("Score: ", v0.GetValue());
+		},
+		p => {
+			const f0 = p._GetNode(0).GetBoundMethod();
+			return () => f0();
+		},
+		p => {
+			const f0 = p._GetNode(0).GetBoundMethod();
+			const v1 = p._GetNode(1).GetVar();
+			const f2 = p._GetNode(2).GetBoundMethod();
+			const v3 = p._GetNode(3).GetVar();
+			return () => ((f0(v1.GetValue(), 2) + " : ") + f2(v3.GetValue(), 2));
 		},
 		() => "Difficulty",
 		() => 10,
@@ -884,7 +912,6 @@ self.C3_JsPropNameTable = [
 		() => 35,
 		() => 65,
 		() => "Player",
-		() => 0,
 		() => "Default",
 		() => 0.1,
 		() => 2000,
@@ -1142,10 +1169,6 @@ self.C3_JsPropNameTable = [
 		() => "Z",
 		() => "E",
 		() => "D",
-		p => {
-			const f0 = p._GetNode(0).GetBoundMethod();
-			return () => f0();
-		},
 		() => "OverTouchOver2"
 	];
 }
