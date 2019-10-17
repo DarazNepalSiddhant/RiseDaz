@@ -736,6 +736,8 @@ self.C3_JsPropNameTable = [
 	{logo: 0},
 	{Top10ListBG: 0},
 	{GameOverSprite: 0},
+	{RightArrow: 0},
+	{LeftArrow: 0},
 	{input: 0},
 	{ScrollUp: 0},
 	{NextPlatform: 0},
@@ -1190,7 +1192,13 @@ self.C3_JsPropNameTable = [
 		() => 244,
 		() => 423,
 		() => 417,
-		() => 100
+		() => 100,
+		() => 27,
+		() => 421,
+		() => 458,
+		() => -100,
+		() => "Platform",
+		() => "Tilt"
 	];
 }
 
